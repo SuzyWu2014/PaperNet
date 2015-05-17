@@ -1,9 +1,11 @@
 package com.osu.suzy.papernet;
 
+import android.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 
 public class Activity_web extends ActionBarActivity {
@@ -12,6 +14,12 @@ public class Activity_web extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        WebView webview = (WebView) (this.findViewById(R.id.main_webView));
+        webview.getSettings().setJavaScriptEnabled(true);
+        webview.loadUrl(Constants.BASE_URL);
     }
 
 
@@ -21,19 +29,16 @@ public class Activity_web extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_activity_web, menu);
         return true;
     }
-
+    private void closeWindow() {
+        super.finish();
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        if (item.getItemId() == android.R.id.home) {
+            closeWindow();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
             return true;
         }
-
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 }
