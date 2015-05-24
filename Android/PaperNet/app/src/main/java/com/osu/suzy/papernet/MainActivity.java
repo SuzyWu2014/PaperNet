@@ -5,17 +5,20 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.osu.suzy.papernet.camera.UtilityCamera;
+
+import net.sourceforge.tess4j.Tesseract1;
+import net.sourceforge.tess4j.TesseractException;
+
 import java.io.File;
 import java.io.IOException;
-
-import com.osu.suzy.papernet.camera.UtilityCamera;
 
 public class MainActivity extends Activity {
 
@@ -88,7 +91,7 @@ public class MainActivity extends Activity {
 
             Intent intent=new Intent(MainActivity.this, Activity_web.class);
             intent.putExtra("new_photo_path",mCurrentPhotoPath);
-           // startActivity(intent);
+
             finish();
         }
     }
